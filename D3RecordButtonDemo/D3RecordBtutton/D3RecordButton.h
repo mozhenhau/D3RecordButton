@@ -19,15 +19,10 @@
 @end
 
 @interface D3RecordButton : UIButton<Mp3RecorderDelegate>{
-    int recordTime;
     int maxTime;
-    BOOL isbeginVoiceRecord;
-    
-    NSTimer *playTimer;
     Mp3Recorder *mp3;
-    
 }
-@property (nonatomic,weak) id<D3RecordDelegate> delegata;
+@property (nonatomic,weak) id<D3RecordDelegate> delegate;
 
 
 - (void)initRecord:(id<D3RecordDelegate>)delegate maxtime:(int)_maxTime;

@@ -1,9 +1,7 @@
 //
 //  Mp3Recorder.m
-//  BloodSugar
-//
-//  Created by PeterPan on 14-3-24.
-//  Copyright (c) 2014年 shake. All rights reserved.
+//  Created by bmind on 15/7/28.
+//  Copyright (c) 2015年 bmind. All rights reserved.
 //
 
 #import "Mp3Recorder.h"
@@ -77,31 +75,58 @@
     [self setSesstion];
     [self setRecorder];
     [_recorder record];
+    
+    recordTime = 0;
+    playTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(countVoiceTime) userInfo:nil repeats:YES];
 }
 
 
 - (void)stopRecord
 {
-    double cTime = _recorder.currentTime;
-    [_recorder stop];
-    
-    if (cTime > 1) {
-        [self audio_PCMtoMP3];
-    }else {
+    if (playTimer) {
+        double cTime = _recorder.currentTime;
+        [_recorder stop];
         
-        [_recorder deleteRecording];
-        
-        if ([_delegate respondsToSelector:@selector(failRecord)]) {
-            [_delegate failRecord];
+        if (cTime > 1) {
+            [self audio_PCMtoMP3];
+        }else {
+            
+            [_recorder deleteRecording];
+            if ([_delegate respondsToSelector:@selector(failRecord)]) {
+                [_delegate failRecord];
+            }
         }
+        
+        [playTimer invalidate];
+        playTimer = nil;
     }
 }
 
 - (void)cancelRecord
 {
-    [_recorder stop];
-    [_recorder deleteRecording];
+    if (playTimer) {
+        [_recorder stop];
+        [_recorder deleteRecording];
+        [playTimer invalidate];
+        playTimer = nil;
+    }
 }
+
+
+//录音计时
+- (void)countVoiceTime
+{
+    recordTime ++;
+    [_recorder updateMeters];
+    const double ALPHA = 0.05;
+    double peakPowerForChannel = pow(10, (0.05 * [_recorder peakPowerForChannel:0]));
+    lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
+    if ([_delegate respondsToSelector:@selector(recording:volume:)]) {
+        [_delegate recording:recordTime volume:lowPassResults];
+    }
+}
+
+
 
 - (void)deleteMp3Cache
 {
@@ -122,14 +147,6 @@
     }
 }
 
-
--(void) audioLevelTimerCallback:(NSTimer *) timer {
-    [_recorder updateMeters];
-    const double ALPHA = 0.05;
-    double peakPowerForChannel = pow(10, (0.05 * [_recorder peakPowerForChannel:0]));
-    lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
-    NSLog(@"sound::::::%f",lowPassResults);
-}
 
 #pragma mark - Convert Utils
 - (void)audio_PCMtoMP3
@@ -162,7 +179,7 @@
         lame_init_params(lame);
         
         do {
-            read = fread(pcm_buffer, 2*sizeof(short int), PCM_SIZE, pcm);
+            read = (int)fread(pcm_buffer, 2*sizeof(short int), PCM_SIZE, pcm);
             if (read == 0)
                 write = lame_encode_flush(lame, mp3_buffer, MP3_SIZE);
             else

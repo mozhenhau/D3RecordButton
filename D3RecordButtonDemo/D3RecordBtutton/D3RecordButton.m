@@ -11,9 +11,8 @@
 @implementation D3RecordButton
 
 -(void)initRecord:(id<D3RecordDelegate>)delegate maxtime:(int)_maxTime{
-    self.delegata = delegate;
+    self.delegate = delegate;
     maxTime = _maxTime;
-    recordTime = 0;
     mp3 = [[Mp3Recorder alloc]initWithDelegate:self];
     
     [self addTarget:self action:@selector(startRecord) forControlEvents:UIControlEventTouchDown];
@@ -26,28 +25,17 @@
 //开始录音
 -(void)startRecord{
     [mp3 startRecord];
-    recordTime = 0;
-    playTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countVoiceTime) userInfo:nil repeats:YES];
-    
     NSLog(@"show hud");
 }
 
 //正常停止录音，开始转换数据
 -(void)stopRecord{
-    if (playTimer) {
-        [mp3 stopRecord];
-        [playTimer invalidate];
-        playTimer = nil;
-    }
+    [mp3 stopRecord];
 }
 
 //取消录音
 -(void)cancelRecord{
-    if (playTimer) {
-        [mp3 cancelRecord];
-        [playTimer invalidate];
-        playTimer = nil;
-    }
+    [mp3 cancelRecord];
     NSLog(@"show hud cancel");
 }
 
@@ -55,8 +43,8 @@
 - (void)RemindDragExit:(UIButton *)button
 {
     NSLog(@"Release to cancel");
-    if ([_delegata respondsToSelector:@selector(dragExit)]) {
-        [_delegata dragExit];
+    if ([_delegate respondsToSelector:@selector(dragExit)]) {
+        [_delegate dragExit];
     }
 }
 
@@ -64,20 +52,8 @@
 - (void)RemindDragEnter:(UIButton *)button
 {
     NSLog(@"Slide up to cancel");
-    if ([_delegata respondsToSelector:@selector(dragEnter)]) {
-        [_delegata dragEnter];
-    }
-}
-
-//录音计时
-- (void)countVoiceTime
-{
-    recordTime ++;
-    if ([_delegata respondsToSelector:@selector(recording:)]) {
-        [_delegata recording:recordTime];
-    }
-    if (recordTime>=maxTime) {
-        [self stopRecord];
+    if ([_delegate respondsToSelector:@selector(dragEnter)]) {
+        [_delegate dragEnter];
     }
 }
 
@@ -90,12 +66,12 @@
 //录音失败
 - (void)failRecord
 {
-    if (recordTime < 1) {
-        NSLog(@"show hud record toshort");
-    }
-    else{
-        NSLog(@"show hud record fail");
-    }
+//    if (recordTime < 1) {
+//        NSLog(@"show hud record toshort");
+//    }
+//    else{
+//        NSLog(@"show hud record fail");
+//    }
 }
 
 
@@ -103,9 +79,16 @@
 - (void)endConvertWithData:(NSData *)voiceData
 {
     NSLog(@"show hud suc");
-    if ([_delegata respondsToSelector:@selector(endRecord:)]) {
-        [_delegata endRecord:voiceData];
+    if ([_delegate respondsToSelector:@selector(endRecord:)]) {
+        [_delegate endRecord:voiceData];
     }
 }
 
+-(void)recording:(int)recordTime volume:(float)volume{
+    if (recordTime>=maxTime) {
+        [self stopRecord];
+    }
+    NSLog(@"时间:%d, 声量:%f",recordTime,volume);
+
+}
 @end
