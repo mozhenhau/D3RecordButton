@@ -11,9 +11,10 @@
 
 @implementation D3RecordButton
 
--(void)initRecord:(id<D3RecordDelegate>)delegate maxtime:(int)_maxTime{
+-(void)initRecord:(id<D3RecordDelegate>)delegate maxtime:(int)_maxTime title:(NSString *)_title{
     self.delegate = delegate;
     maxTime = _maxTime;
+    title = _title;
     mp3 = [[Mp3Recorder alloc]initWithDelegate:self];
     
     [self addTarget:self action:@selector(startRecord) forControlEvents:UIControlEventTouchDown];
@@ -23,10 +24,16 @@
     [self addTarget:self action:@selector(RemindDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
 }
 
+-(void)initRecord:(id<D3RecordDelegate>)delegate maxtime:(int)_maxTime{
+    [self initRecord:delegate maxtime:_maxTime title:nil];
+}
+
+
 //开始录音
 -(void)startRecord{
     [mp3 startRecord];
     [RecordHUD show];
+    [self setHUDTitle];
 }
 
 //正常停止录音，开始转换数据
@@ -54,27 +61,29 @@
 //进入按钮范围
 - (void)RemindDragEnter:(UIButton *)button
 {
-    [RecordHUD setTitle:@"离开按钮取消录音"];
+    [self setHUDTitle];
     if ([_delegate respondsToSelector:@selector(dragEnter)]) {
         [_delegate dragEnter];
+    }
+}
+
+-(void)setHUDTitle{
+    if (title != nil) {
+        [RecordHUD setTitle:title];
+    }
+    else{
+        [RecordHUD setTitle:@"离开按钮取消录音"];
     }
 }
 
 
 #pragma mark Mp3RecordDelegate
 -(void)beginConvert{
-//    NSLog(@"begin");
 }
 
 //录音失败
 - (void)failRecord
 {
-//    if (recordTime < 1) {
-//        NSLog(@"show hud record toshort");
-//    }
-//    else{
-//        NSLog(@"show hud record fail");
-//    }
 }
 
 
@@ -91,7 +100,7 @@
     if (recordTime>=maxTime) {
         [self stopRecord];
     }
-    [RecordHUD setImage:[NSString stringWithFormat:@"mic_%.0f.png",volume]];
-    [RecordHUD setTimeTitle:[NSString stringWithFormat:@"录音:%.0f\"",recordTime]];
+    [RecordHUD setImage:[NSString stringWithFormat:@"mic_%.0f.png",volume*10 > 5 ? 5 : volume*10]];
+    [RecordHUD setTimeTitle:[NSString stringWithFormat:@"录音: %.0f\"",recordTime]];
 }
 @end

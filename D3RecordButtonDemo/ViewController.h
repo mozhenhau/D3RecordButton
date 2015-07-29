@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "D3RecordButton.h"
 
-@interface ViewController : UIViewController<D3RecordDelegate>
+@interface ViewController : UIViewController<D3RecordDelegate>{
+    AVAudioPlayer *play;
+}
 
 
 @end

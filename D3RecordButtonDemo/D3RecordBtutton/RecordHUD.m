@@ -28,14 +28,11 @@
 
 
 - (void)show{
-    dispatch_async(dispatch_get_main_queue(), ^{
         if(!self.superview){
             [self.overlayWindow addSubview:self];
         }
         
-        if (!imgView){
-            imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mic_1.png"]];
-        }
+        imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mic_0.png"]];
         imgView.frame = CGRectMake(0, 0, 154, 180);
         imgView.center = CGPointMake([[UIScreen mainScreen] bounds].size.width/2,[[UIScreen mainScreen] bounds].size.height/2);
         imgView.layer.cornerRadius = 10.0f;
@@ -57,7 +54,7 @@
             timeLabel.backgroundColor = [UIColor clearColor];
         }
         timeLabel.center = CGPointMake(imgView.center.x, imgView.center.y - 77);
-        timeLabel.text = @"录音:0\"";
+        timeLabel.text = @"录音: 0\"";
         timeLabel.textAlignment = NSTextAlignmentCenter;
         timeLabel.font = [UIFont boldSystemFontOfSize:14];
         timeLabel.textColor = [UIColor whiteColor];
@@ -67,7 +64,7 @@
         [self addSubview:titleLabel];
         [self addSubview:timeLabel];
         
-        [UIView animateWithDuration:0.5
+        [UIView animateWithDuration:0.3
                               delay:0
                             options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
@@ -76,7 +73,6 @@
                          completion:^(BOOL finished){
                          }];
         [self setNeedsDisplay];
-    });
 }
 
 
@@ -85,8 +81,7 @@
 }
 
 - (void)dismiss{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.5
+        [UIView animateWithDuration:0.3
                               delay:0
                             options:UIViewAnimationCurveEaseIn | UIViewAnimationOptionAllowUserInteraction
                          animations:^{
@@ -113,7 +108,6 @@
                                  }];
                              }
                          }];
-    });
 }
 
 

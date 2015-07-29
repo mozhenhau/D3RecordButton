@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,17 +17,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyb-8p-0B7" customClass="D3RecordButton">
-                                <rect key="frame" x="244" y="240" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyb-8p-0B7" customClass="D3RecordButton">
+                                <rect key="frame" x="16" y="562" width="568" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.67395212169999996" blue="0.16220445459999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0Kz-w7-dFB"/>
+                                </constraints>
+                                <state key="normal" title="开始录音">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCj-Pu-CHr" customClass="D3RecordButton">
+                                <rect key="frame" x="262" y="275" width="77" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.67395212169999996" blue="0.16220445459999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="C6g-YL-2V5"/>
+                                    <constraint firstAttribute="height" constant="50" id="cxS-cJ-ePe"/>
+                                </constraints>
+                                <state key="normal" title="录音">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cyb-8p-0B7" secondAttribute="bottom" constant="8" id="3D3-Mr-fD7"/>
+                            <constraint firstItem="Cyb-8p-0B7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7mQ-0m-yxM"/>
+                            <constraint firstAttribute="centerX" secondItem="VCj-Pu-CHr" secondAttribute="centerX" constant="-0.5" id="X6j-oj-Fpg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cyb-8p-0B7" secondAttribute="trailing" id="klG-9V-Z4d"/>
+                            <constraint firstAttribute="centerY" secondItem="VCj-Pu-CHr" secondAttribute="centerY" id="pkT-lx-nmK"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="btn" destination="Cyb-8p-0B7" id="UGN-I4-wcq"/>
+                        <outlet property="centerBtn" destination="VCj-Pu-CHr" id="HsP-QG-Jd2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
