@@ -9,13 +9,13 @@
 @protocol Mp3RecorderDelegate <NSObject>
 - (void)failRecord;
 - (void)beginConvert;
-- (void)recording:(int)recordTime volume:(float)volume;
+- (void)recording:(float)recordTime volume:(float)volume;
 - (void)endConvertWithData:(NSData *)voiceData;
 @end
 
 @interface Mp3Recorder : NSObject{
     double lowPassResults;
-    int recordTime;
+    float recordTime;
     NSTimer *playTimer;
 }
 @property (nonatomic, weak) id<Mp3RecorderDelegate> delegate;

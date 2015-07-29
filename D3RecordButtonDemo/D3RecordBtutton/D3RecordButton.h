@@ -12,10 +12,12 @@
 #import <AVFoundation/AVFoundation.h>
 
 @protocol D3RecordDelegate <NSObject>
-- (void)recording:(int) second;
+- (void)recording:(float) recordTime;
 - (void)endRecord:(NSData *)voiceData; //filePath:(NSString *)filePath;
-@optional - (void)dragExit;
-@optional - (void)dragEnter;
+
+@optional
+- (void)dragExit;
+- (void)dragEnter;
 @end
 
 @interface D3RecordButton : UIButton<Mp3RecorderDelegate>{

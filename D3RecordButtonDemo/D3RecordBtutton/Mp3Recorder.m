@@ -116,7 +116,7 @@
 //录音计时
 - (void)countVoiceTime
 {
-    recordTime ++;
+    recordTime += 0.1;
     [_recorder updateMeters];
     const double ALPHA = 0.05;
     double peakPowerForChannel = pow(10, (0.05 * [_recorder peakPowerForChannel:0]));

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "RecordHUD.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet D3RecordButton *btn;
@@ -25,8 +26,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)recording:(int)second{
-    NSLog(@"%d秒",second);
+-(void)recording:(float)recordTime{
+
 }
 
 -(void)endRecord:(NSData *)voiceData{

@@ -17,6 +17,13 @@
 		162EAA061B676EC900AA4CA0 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 162EAA031B676EC900AA4CA0 /* libmp3lame.a */; };
 		162EAA071B676EC900AA4CA0 /* Mp3Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EAA051B676EC900AA4CA0 /* Mp3Recorder.m */; };
 		162EAA0A1B676EEF00AA4CA0 /* D3RecordButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EAA091B676EEF00AA4CA0 /* D3RecordButton.m */; };
+		162EAA121B686E6C00AA4CA0 /* mic_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 162EAA0C1B686E6C00AA4CA0 /* mic_1.png */; };
+		162EAA131B686E6C00AA4CA0 /* mic_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 162EAA0D1B686E6C00AA4CA0 /* mic_2.png */; };
+		162EAA141B686E6C00AA4CA0 /* mic_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 162EAA0E1B686E6C00AA4CA0 /* mic_3.png */; };
+		162EAA151B686E6C00AA4CA0 /* mic_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 162EAA0F1B686E6C00AA4CA0 /* mic_4.png */; };
+		162EAA161B686E6C00AA4CA0 /* mic_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 162EAA101B686E6C00AA4CA0 /* mic_5.png */; };
+		162EAA1A1B686FF700AA4CA0 /* RecordHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EAA191B686FF700AA4CA0 /* RecordHUD.m */; };
+		162EAA1C1B687CCE00AA4CA0 /* mic_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 162EAA1B1B687CCE00AA4CA0 /* mic_0.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,14 @@
 		162EAA051B676EC900AA4CA0 /* Mp3Recorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mp3Recorder.m; sourceTree = "<group>"; };
 		162EAA081B676EEF00AA4CA0 /* D3RecordButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = D3RecordButton.h; sourceTree = "<group>"; };
 		162EAA091B676EEF00AA4CA0 /* D3RecordButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = D3RecordButton.m; sourceTree = "<group>"; };
+		162EAA0C1B686E6C00AA4CA0 /* mic_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_1.png; sourceTree = "<group>"; };
+		162EAA0D1B686E6C00AA4CA0 /* mic_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_2.png; sourceTree = "<group>"; };
+		162EAA0E1B686E6C00AA4CA0 /* mic_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_3.png; sourceTree = "<group>"; };
+		162EAA0F1B686E6C00AA4CA0 /* mic_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_4.png; sourceTree = "<group>"; };
+		162EAA101B686E6C00AA4CA0 /* mic_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_5.png; sourceTree = "<group>"; };
+		162EAA181B686FF700AA4CA0 /* RecordHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordHUD.h; sourceTree = "<group>"; };
+		162EAA191B686FF700AA4CA0 /* RecordHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordHUD.m; sourceTree = "<group>"; };
+		162EAA1B1B687CCE00AA4CA0 /* mic_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_0.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,14 +148,30 @@
 		162EAA011B676EC900AA4CA0 /* D3RecordBtutton */ = {
 			isa = PBXGroup;
 			children = (
+				162EAA0B1B686E6C00AA4CA0 /* imgs */,
 				162EAA021B676EC900AA4CA0 /* lame.h */,
 				162EAA031B676EC900AA4CA0 /* libmp3lame.a */,
 				162EAA041B676EC900AA4CA0 /* Mp3Recorder.h */,
 				162EAA051B676EC900AA4CA0 /* Mp3Recorder.m */,
+				162EAA181B686FF700AA4CA0 /* RecordHUD.h */,
+				162EAA191B686FF700AA4CA0 /* RecordHUD.m */,
 				162EAA081B676EEF00AA4CA0 /* D3RecordButton.h */,
 				162EAA091B676EEF00AA4CA0 /* D3RecordButton.m */,
 			);
 			path = D3RecordBtutton;
+			sourceTree = "<group>";
+		};
+		162EAA0B1B686E6C00AA4CA0 /* imgs */ = {
+			isa = PBXGroup;
+			children = (
+				162EAA1B1B687CCE00AA4CA0 /* mic_0.png */,
+				162EAA0C1B686E6C00AA4CA0 /* mic_1.png */,
+				162EAA0D1B686E6C00AA4CA0 /* mic_2.png */,
+				162EAA0E1B686E6C00AA4CA0 /* mic_3.png */,
+				162EAA0F1B686E6C00AA4CA0 /* mic_4.png */,
+				162EAA101B686E6C00AA4CA0 /* mic_5.png */,
+			);
+			path = imgs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,8 +255,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				162EA9E71B676E9100AA4CA0 /* Main.storyboard in Resources */,
+				162EAA161B686E6C00AA4CA0 /* mic_5.png in Resources */,
+				162EAA1C1B687CCE00AA4CA0 /* mic_0.png in Resources */,
+				162EAA121B686E6C00AA4CA0 /* mic_1.png in Resources */,
 				162EA9EC1B676E9100AA4CA0 /* LaunchScreen.xib in Resources */,
+				162EAA131B686E6C00AA4CA0 /* mic_2.png in Resources */,
+				162EAA151B686E6C00AA4CA0 /* mic_4.png in Resources */,
 				162EA9E91B676E9100AA4CA0 /* Images.xcassets in Resources */,
+				162EAA141B686E6C00AA4CA0 /* mic_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +282,7 @@
 			files = (
 				162EA9E41B676E9100AA4CA0 /* ViewController.m in Sources */,
 				162EA9E11B676E9100AA4CA0 /* AppDelegate.m in Sources */,
+				162EAA1A1B686FF700AA4CA0 /* RecordHUD.m in Sources */,
 				162EAA0A1B676EEF00AA4CA0 /* D3RecordButton.m in Sources */,
 				162EAA071B676EC900AA4CA0 /* Mp3Recorder.m in Sources */,
 				162EA9DE1B676E9100AA4CA0 /* main.m in Sources */,
